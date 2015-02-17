@@ -4,3 +4,4 @@ dist
 MANIFEST
 pysensu.egg-info
 *.pyc
+*.swp
