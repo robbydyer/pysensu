@@ -38,11 +38,17 @@ class Pysensu():
         else:
             raise ValueError("Invalid method")
 
-    def create_stash(self, client, check=None):
-        if check:
-            r = self._api_call("{}/stashes/{}/{}".format(self.api_url, client, check), "post", "{}")
+    def create_stash(self, client, check=None, data=None):
+        if data:
+            if check:
+                r = self._api_call("{}/stashes/{}/{}".format(self.api_url, client, check), "post", data=json.dumps(data))
+            else:
+                r = self._api_call("{}/stashes/{}".format(self.api_url, client), "post", data=json.dumps(data))
         else:
-            r = self._api_call("{}/stashes/{}".format(self.api_url, client), "post", "{}")
+            if check:
+                r = self._api_call("{}/stashes/{}/{}".format(self.api_url, client, check), "post", "{}")
+            else:
+                r = self._api_call("{}/stashes/{}".format(self.api_url, client), "post", "{}")
         if r.status_code != requests.codes.created:
             raise ValueError("Error creating stash ({})".format(r.status_code))
 
