@@ -27,6 +27,12 @@ class Pysensu():
         return "{}://{}{}:{}".format(protocol, credentials, host, port)
 
     def _api_call(self, url, method, data=None):
+        # Verify data is json
+        if data:
+            try:
+                json_obj = json.loads(data)
+            except (ValueError, TypeError):
+                data = json.dumps(data)
         if method == "post":
             return requests.post(url, data=data)
         elif method == "get":
