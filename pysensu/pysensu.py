@@ -66,6 +66,12 @@ class Pysensu():
         if r.status_code != requests.codes.no_content:
             raise ValueError("Error deleting stash ({})".format(r.status_code))
 
+    def get_stash(self, path):
+        r = self._api_call("{}/stashes/{}".format(self.api_url, path), "get")
+        if r.status_code != requests.codes.ok:
+            raise ValueError("Error getting stash ({})".format(r.status_code))
+        return r.json()
+
     def delete_client(self, client):
         r = self._api_call("{}/clients/{}".format(self.api_url, client), "delete")
         if r.status_code != requests.codes.accepted:
