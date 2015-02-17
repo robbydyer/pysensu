@@ -4,7 +4,7 @@
 from setuptools import setup
 
 setup(name='pysensu',
-      version='0.5',
+      version='0.5.0',
       description='Utilities for working with Sensu',
       author='K. Daniels',
       author_email='kd@gc.io',

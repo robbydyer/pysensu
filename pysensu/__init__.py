@@ -1,4 +1,4 @@
 #!/usr/bin/env python
 
-version = "0.5"
+version = "0.5.0"
 
